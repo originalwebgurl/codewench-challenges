@@ -4,10 +4,10 @@ function info() {
     console.log("INFO")
     const response = {
         apiversion: "1",
-        author: "",
-        color: "#888888",
-        head: "default",
-        tail: "default"
+        author: "codewench",
+        color: "#FF3366",
+        head: "pixel",
+        tail: "hook"
     }
     return response
 }
