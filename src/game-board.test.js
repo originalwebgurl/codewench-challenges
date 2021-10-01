@@ -5,9 +5,7 @@ const board = {
     "height": 11,
     "width": 11,
     "snakes": [],
-    "food": [
-      {"x": 10, "y": 0}
-    ]
+    "food": []
 };
 
 test("When at left edge snake doesn't try to move into itself or out of bounds", () => {
@@ -192,7 +190,7 @@ test("When Eve, Kim, Latifah and Missy are in da house snake avoids them", () =>
     expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.arrayContaining(expectedMoves));
 });
 
-test("When health is low snake finds food", () => {
+test("When food is near snake finds food", () => {
     const snakeHead = {
         x: 9,
         y: 0
@@ -202,12 +200,38 @@ test("When health is low snake finds food", () => {
         {"x": 8, "y": 0}
     ];
 
+    board.food.push({"x": 10, "y": 0});
+
     const expectedMoves = ["right"];
 
-    //console.warn("low food", snakeHead, snakeBody, board);
+    // console.warn("low food", snakeHead, snakeBody, board);
 
     expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.not.arrayContaining(["up"]));
     expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.not.arrayContaining(["down"]));
     expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.not.arrayContaining(["left"]));
     expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.arrayContaining(expectedMoves));
+    board.food = [];
+});
+
+test("When food is somewhat near snake finds food", () => {
+    const snakeHead = {
+        x: 5,
+        y: 0
+    };
+    const snakeBody = [
+        {"x": 5, "y": 0},
+        {"x": 4, "y": 0}
+    ];
+
+    board.food.push({"x": 10, "y": 0});
+
+    const expectedMoves = ["right"];
+
+    // console.warn("low food", snakeHead, snakeBody, board);
+
+    expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.not.arrayContaining(["up"]));
+    expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.not.arrayContaining(["down"]));
+    expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.not.arrayContaining(["left"]));
+    expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.arrayContaining(expectedMoves));
+    board.food = [];
 });

@@ -34,13 +34,13 @@ function safeMoves(head, board) {
     // sort((firstEl, secondEl) => { ... } )
     if(temp.length > 0)
     {
-        //console.log("BEFORE SORT", temp);
+        // console.warn("BEFORE SORT", temp);
 
         temp.sort((a, b) => {
             return a.dist - b.dist;
         });
 
-        //console.log("AFTER SORT", temp);
+        // console.warn("AFTER SORT", temp);
     }
 
     possibleMoves = temp.map(move => move.dir);
