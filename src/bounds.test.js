@@ -21,8 +21,8 @@ test("When at right edge snake doesn't turn try to move right", () => {
     expect(bounds.safeMoves(snakeHead, gameBounds)).toEqual(expect.arrayContaining(expectedMoves));
 });
 
-test("When at top edge snake doesn't turn try to move up", () => {
-    const snakeHead = {x: 2, y:0};
+test("When at top edge snake doesn't try to move up", () => {
+    const snakeHead = {x: 2, y:10};
     const gameBounds = {width: 11, height: 11};
 
     const expectedMoves = ["right", "left", "down"];
@@ -31,13 +31,13 @@ test("When at top edge snake doesn't turn try to move up", () => {
     expect(bounds.safeMoves(snakeHead, gameBounds)).toEqual(expect.arrayContaining(expectedMoves));
 });
 
-test("When at bottom edge snake doesn't turn try to move left", () => {
-    const snakeHead = {x: 2, y:10};
+test("When at bottom edge snake doesn't try to move down", () => {
+    const snakeHead = {x: 2, y:0};
     const gameBounds = {width: 11, height: 11};
 
     const expectedMoves = ["right", "left", "up"];
 
     expect(bounds.safeMoves(snakeHead, gameBounds)).toEqual(expect.not.arrayContaining(["down"]));
-    expect(bounds.safeMoves({x: 2, y:11}, gameBounds)).toEqual(expect.not.arrayContaining(["down"]));
+    expect(bounds.safeMoves({x: 2, y:-1}, gameBounds)).toEqual(expect.not.arrayContaining(["down"]));
     expect(bounds.safeMoves(snakeHead, gameBounds)).toEqual(expect.arrayContaining(expectedMoves));
 });

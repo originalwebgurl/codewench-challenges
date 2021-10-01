@@ -2,8 +2,8 @@ function safeMoves(head, body) {
     let possibleMoves = [];
     let availableMoves = ["up", "down", "left", "right"];
     let tryNext = [
-        {"x": head.x, "y": head.y - 1}, // up
-        {"x": head.x, "y": head.y + 1}, // down
+        {"x": head.x, "y": head.y + 1}, // up
+        {"x": head.x, "y": head.y - 1}, // down
         {"x": head.x - 1, "y": head.y}, // left
         {"x": head.x + 1, "y": head.y}, // right
     ];

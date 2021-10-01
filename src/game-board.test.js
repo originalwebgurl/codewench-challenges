@@ -129,5 +129,42 @@ test("When at bottom right corner snake doesn't try to move into itself or out o
     expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.arrayContaining(expectedMoves));
 });
 
+test("When at bottom snake doesn't try to move into itself or out of bounds", () => {
+    const snakeHead = {
+        x: 3,
+        y: 0
+    };
+    const snakeBody = [
+        {"x": 3, "y": 0},
+        {"x": 2, "y": 0},
+        {"x": 1, "y": 0}
+    ];
+    const board = {
+        "height": 11,
+        "width": 11
+    };
+
+    const expectedMoves = ["right", "up"];
+
+    expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.not.arrayContaining(["down"]));
+    expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.arrayContaining(expectedMoves));
+});
+
+
+// [
+//     {
+//         "X": 3,
+//         "Y": 0
+//     },
+//     {
+//         "X": 2,
+//         "Y": 0
+//     },
+//     {
+//         "X": 1,
+//         "Y": 0
+//     }
+// ]
+
 
 // test for snake colliding with other snake/s or hazards
