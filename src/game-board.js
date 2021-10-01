@@ -14,9 +14,9 @@ function safeMoves(head, body, board) {
     possibleMoves = [...new Set(noHazards.filter(element => possibleMoves.includes(element)))];
 
     // prefer food
-    if(board.food/* && board.you && board.you.health <= 50*/) {
+    if(board.food && board.food.length && board.you && board.you.health <= 50) {
         const pickups = food.safeMoves(head, board);
-        console.log("pickups", pickups, board);
+        // console.log("pickups", pickups, board);
         // possibleMoves = [...new Set(pickups.filter(element => possibleMoves.includes(element)))];
         for (let x = 0; x < pickups.length; x++) {
             if(possibleMoves.includes(pickups[x])) {
