@@ -1,4 +1,4 @@
-function safeMoves(head, body) {
+function safeMoves(head, board) {
     let possibleMoves = [];
     let availableMoves = ["up", "down", "left", "right"];
     let tryNext = [
@@ -7,10 +7,12 @@ function safeMoves(head, body) {
         {"x": head.x - 1, "y": head.y}, // left
         {"x": head.x + 1, "y": head.y}, // right
     ];
+    let hazards = board.snakes.flatMap(parts => parts.body);
+    console.log("hazards", hazards);
 
     for (let dir=0; dir<4; dir++) {
         let potentialMove = tryNext[dir];
-        if(!body.some(snakePart => {
+        if(!hazards.some(snakePart => {
             return snakePart.x === potentialMove.x && snakePart.y === potentialMove.y;
         })) {
             possibleMoves.push(availableMoves[dir]);

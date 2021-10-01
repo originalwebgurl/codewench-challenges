@@ -79,7 +79,7 @@ function move(gameState) {
         shout: shout
     }
 
-    console.log(`${gameState.game.id} MOVE ${gameState.turn}: ${response.move}`)
+    // console.log(`${gameState.game.id} MOVE ${gameState.turn}: ${response.move}`)
     return response
 }
 
