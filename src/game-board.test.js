@@ -190,7 +190,7 @@ test("When Eve, Kim, Latifah and Missy are in da house snake avoids them", () =>
     expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.arrayContaining(expectedMoves));
 });
 
-test("When food is near snake finds food", () => {
+test("When food is near the right snake finds food", () => {
     const snakeHead = {
         x: 9,
         y: 0
@@ -213,7 +213,7 @@ test("When food is near snake finds food", () => {
     board.food = [];
 });
 
-test("When food is somewhat near snake finds food", () => {
+test("When food is somewhat near the right snake finds food", () => {
     const snakeHead = {
         x: 5,
         y: 0
@@ -232,6 +232,29 @@ test("When food is somewhat near snake finds food", () => {
     expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.not.arrayContaining(["up"]));
     expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.not.arrayContaining(["down"]));
     expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.not.arrayContaining(["left"]));
+    expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.arrayContaining(expectedMoves));
+    board.food = [];
+});
+
+test("When food is above hungry snake finds food", () => {
+    const snakeHead = {
+        x: 9,
+        y: 0
+    };
+    const snakeBody = [
+        {"x": 9, "y": 0},
+        {"x": 8, "y": 0}
+    ];
+
+    board.food.push({"x": 9, "y": 9});
+
+    const expectedMoves = ["up"];
+
+    // console.warn("low food", snakeHead, snakeBody, board);
+
+    expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.not.arrayContaining(["down"]));
+    expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.not.arrayContaining(["left"]));
+    expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.not.arrayContaining(["right"]));
     expect(gameBoard.safeMoves(snakeHead, snakeBody, board)).toEqual(expect.arrayContaining(expectedMoves));
     board.food = [];
 });
