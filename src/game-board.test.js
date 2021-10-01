@@ -4,7 +4,10 @@ const gameBoard = require("./game-board.js");
 const board = {
     "height": 11,
     "width": 11,
-    "snakes": []
+    "snakes": [],
+    "food": [
+      {"x": 10, "y": 10}
+    ]
 };
 
 test("When at left edge snake doesn't try to move into itself or out of bounds", () => {
